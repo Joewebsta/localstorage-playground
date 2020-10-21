@@ -14,10 +14,16 @@ function storeFormData(){
   let email = emailInput.value;
   let name = nameInput.value;
   
-  let contacts = { [name]: email };
-  let contactObj = JSON.stringify(contacts);
+  if (!localStorage.length) {
+    localStorage.setItem('contacts', JSON.stringify({}));
+  }
 
-  localStorage.setItem('contacts', contactObj);
+  let contacts = localStorage.getItem('contacts');
+  contacts = JSON.parse(contacts);
+  contacts[name] = email;
+
+  contacts = JSON.stringify(contacts);
+  localStorage.setItem('contacts', contacts)
 
   console.log(localStorage);
 }
