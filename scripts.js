@@ -8,9 +8,16 @@ let nameInput = document.querySelector('#name');
 addContactBtn.addEventListener('click', storeFormData);
 
 
-
 // Functions
 
 function storeFormData(){
-  console.log('it works!');
+  let email = emailInput.value;
+  let name = nameInput.value;
+  
+  let contacts = { [name]: email };
+  let contactObj = JSON.stringify(contacts);
+
+  localStorage.setItem('contacts', contactObj);
+
+  console.log(localStorage);
 }
